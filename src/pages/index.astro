@@ -1,0 +1,133 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
+---
+
+<Layout title="Home">
+  <div
+    class="relative flex flex-col items-center justify-center text-center mt-12 md:mt-20 mb-20 md:mb-32 z-10"
+  >
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-cyan-500/20 blur-[80px] md:blur-[120px] rounded-full pointer-events-none -z-10"
+    >
+    </div>
+
+    <div class="animate-fade-in-down max-w-4xl px-2 sm:px-4">
+      <h1
+        class="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 drop-shadow-lg"
+      >
+        Decode the hardware. <br />
+        <span class="text-cyan-400 neon-text-glow">Build the future.</span>
+      </h1>
+      <p
+        class="text-lg sm:text-xl md:text-2xl text-gray-400 mb-12 leading-relaxed max-w-3xl mx-auto"
+      >
+        Electronics shouldn't feel like a textbook. The best way to learn is by
+        building, experimenting, breaking things, and understanding how they
+        work at the silicon level.
+      </p>
+    </div>
+
+    <div
+      class="w-full max-w-5xl mt-12 md:mt-16 animate-[fadeInDown_0.4s_ease-out_0.2s_forwards] opacity-0 px-2 sm:px-4"
+    >
+      <div
+        class="flex items-center justify-center gap-2 sm:gap-4 mb-8 md:mb-12"
+      >
+        <div
+          class="h-px bg-gradient-to-r from-transparent to-cyan-500/50 w-12 sm:w-20 md:w-32"
+        >
+        </div>
+        <h2
+          class="text-xl sm:text-2xl md:text-3xl font-display font-bold text-white tracking-widest uppercase text-center"
+        >
+          Our Products
+        </h2>
+        <div
+          class="h-px bg-gradient-to-l from-transparent to-cyan-500/50 w-12 sm:w-20 md:w-32"
+        >
+        </div>
+      </div>
+
+      <div
+        class="glass-panel p-6 sm:p-8 md:p-12 rounded-3xl md:rounded-[2.5rem] relative overflow-hidden group"
+      >
+        <div
+          class="absolute -inset-px bg-gradient-to-b from-white/10 to-transparent rounded-3xl md:rounded-[2.5rem] pointer-events-none"
+        >
+        </div>
+
+        <h3
+          class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4"
+        >
+          Soan Papdi <span class="text-indigo-400">FPGA</span>
+        </h3>
+        <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-12">
+          A learning-focused FPGA board built on the Lattice iCE40UP5K — the
+          exact same FPGA family powering features inside the iPhone 7. Designed
+          intentionally with just what you need: the FPGA, Flash memory, USB-C,
+          and I/O.
+        </p>
+
+        <!-- 3D Model Viewer -->
+        <script
+          type="module"
+          src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
+        ></script>
+        <div
+          class="relative w-full mb-12 rounded-3xl bg-slate-950/80 border border-white/5 shadow-2xl p-2 md:p-6 overflow-hidden"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-cyan-500/10 mix-blend-overlay"
+          >
+          </div>
+          <model-viewer
+            src="/models/soan-papdi.glb"
+            camera-controls
+            camera-orbit="0deg 75deg 90%"
+            shadow-intensity="1"
+            shadow-softness="1"
+            environment-image="neutral"
+            exposure="1.2"
+            loading="lazy"
+            class="w-full h-[400px] md:h-[600px] outline-none cursor-grab active:cursor-grabbing z-10 relative"
+            alt="3D model of Soan Papdi FPGA"></model-viewer>
+        </div>
+
+        <div
+          class="flex flex-col sm:flex-row gap-6 justify-center w-full max-w-xl mx-auto mt-8"
+        >
+          <Button href="/soan-papdi" variant="secondary">
+            <svg
+              class="w-5 h-5 text-indigo-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path></svg
+            >
+            View Specs
+          </Button>
+          <Button href="https://pyjamacafe.com/fpga/" variant="primary">
+            <svg
+              class="w-5 h-5 text-slate-950"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg
+            >
+            Buy Now
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Carousel from '../components/Carousel.astro';
+import { Image } from 'astro:assets';
+import hardikImg from '../assets/images/hardik1.jpg';
+import lskImg from '../assets/images/lsk.png';
+
+const imagesGlob = import.meta.glob<{ default: ImageMetadata }>('../assets/images/project-v1/*.png', { eager: true });
+
+const projectImagesPathOrder = [
+  "17.png", "21.png", "6.png", "25.png", "24.png", "9.png", "20.png",
+  "13.png", "7.png", "8.png", "10.png", "11.png", "12.png", "1.png",
+  "2.png", "18.png", "19.png", "22.png", "26.png", "33.png", "39.png",
+  "27.png", "28.png", "29.png", "40.png", "41.png", "42.png"
+];
+
+const projectImages = projectImagesPathOrder.map(
+  filename => imagesGlob[`../assets/images/project-v1/${filename}`].default
+);
+---
+
+<Layout title="About Us">
+  <div class="max-w-5xl mx-auto mt-16 animate-fade-in-down relative z-10">
+    <!-- Glow -->
+    <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+    
+    <section class="mb-24 text-center">
+      <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-md">The <span class="text-cyan-400">Creators</span></h1>
+      <p class="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+        We're Hardik and Lakshya, two brothers who've always been the kind of people who opened things up just to understand how they worked. That curiosity eventually became <span class="text-white font-semibold">Ashok Tinkering Labs</span> — named after our grandfather.
+      </p>
+    </section>
+
+    <section class="mb-32">
+      <div class="flex items-center gap-4 mb-12">
+        <h2 class="text-3xl font-display font-bold text-white uppercase tracking-wider">Core Team</h2>
+        <div class="h-px bg-gradient-to-r from-indigo-500/50 to-transparent flex-1"></div>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Team Member 1 -->
+        <div class="glass-panel p-8 rounded-3xl relative overflow-hidden group">
+          <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="flex flex-col sm:flex-row gap-8 items-start relative z-10">
+            <div class="relative shrink-0">
+              <div class="absolute inset-0 bg-indigo-500 blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+              <Image src={hardikImg} alt="Hardik Seth" class="w-[150px] h-[150px] object-cover rounded-2xl border border-white/10 relative z-10" />
+            </div>
+            <div>
+              <h3 class="text-3xl font-bold text-white mb-1">Hardik Seth</h3>
+              <p class="text-indigo-400 font-medium mb-1 uppercase tracking-wide text-sm">Embedded Engineer</p>
+              <p class="text-xs text-gray-500 mb-4 bg-white/5 inline-block px-3 py-1 rounded-full border border-white/10">STEMpedia</p>
+              <div class="flex gap-4 text-sm mb-6">
+                <a href="https://www.linkedin.com/in/hardik-seth-8687b7201/" class="text-gray-400 hover:text-cyan-400 transition-colors">LinkedIn</a>
+                <a href="https://x.com/DIY_With_Hardik" class="text-gray-400 hover:text-cyan-400 transition-colors">X</a>
+                <a href="https://www.youtube.com/@DIYwithHardik" class="text-gray-400 hover:text-cyan-400 transition-colors">YouTube</a>
+              </div>
+              <p class="text-gray-400 text-sm leading-relaxed">
+                Engineer by day, Maker by night - playing with electronics since the age of 9. From childhood, I've loved tearing things apart, rebuilding them, and learning through hands-on experimentation.<br/><br/>
+                Currently designing PCBs, writing firmware, and turning ideas into complete, working hardware products.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="glass-panel p-8 rounded-3xl relative overflow-hidden group">
+          <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="flex flex-col sm:flex-row gap-8 items-start relative z-10">
+            <div class="relative shrink-0">
+              <div class="absolute inset-0 bg-cyan-500 blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+              <Image src={lskImg} alt="Lakshya Seth" class="w-[150px] h-[150px] object-cover rounded-2xl border border-white/10 relative z-10" />
+            </div>
+            <div>
+              <h3 class="text-3xl font-bold text-white mb-1">Lakshya Seth</h3>
+              <p class="text-cyan-400 font-medium mb-1 uppercase tracking-wide text-sm">Digital Craftsman</p>
+              <p class="text-xs text-gray-500 mb-4 bg-white/5 inline-block px-3 py-1 rounded-full border border-white/10">Class 12th Student</p>
+              <div class="flex gap-4 text-sm mb-6">
+                <a href="https://www.linkedin.com/in/lakshyaseth7089/" class="text-gray-400 hover:text-indigo-400 transition-colors">LinkedIn</a>
+                <a href="https://www.youtube.com/@lakshyaseth7089" class="text-gray-400 hover:text-indigo-400 transition-colors">YouTube</a>
+              </div>
+              <p class="text-gray-400 text-sm leading-relaxed">
+                Love to build things, breaking and tearing things apart, to really learn how it's working, and what I can build with it. I like to play with Arch Linux and electronics.<br/><br/>
+                Currently, I'm in 12th grade and trying to get into an engineering college.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-20">
+      <div class="flex items-center gap-4 mb-8">
+        <h2 class="text-3xl font-display font-bold text-white uppercase tracking-wider">DIY Archives</h2>
+        <div class="h-px bg-gradient-to-r from-cyan-500/50 to-transparent flex-1"></div>
+      </div>
+      
+      <Carousel images={projectImages.slice(0, 10)} />
+
+      <div class="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4 mt-12 lightbox-trigger">
+        {projectImages.map((src) => (
+          <div class="break-inside-avoid glass-panel p-1 rounded-xl group overflow-hidden cursor-zoom-in">
+             <Image 
+              src={src} 
+              alt="DIY Project" 
+              class="w-full h-auto rounded-lg object-cover group-hover:opacity-90 transition-opacity" 
+              loading="lazy" 
+            />
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+</Layout>

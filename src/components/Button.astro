@@ -1,0 +1,27 @@
+---
+export interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary';
+  class?: string;
+}
+
+const { href, variant = 'primary', class: className = '' } = Astro.props;
+
+const baseStyles = "relative flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl text-lg font-display font-semibold transition-all duration-300 active:scale-95 overflow-hidden group";
+
+// Primary: Cyan neon glow button
+// Secondary: Glass panel button with border glow on hover
+const variants = {
+  primary: "bg-cyan-500 text-slate-950 shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] hover:bg-cyan-400 hover:-translate-y-1",
+  secondary: "glass-panel text-white hover:border-indigo-400/50 hover:bg-indigo-500/10 hover:-translate-y-1 shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
+};
+---
+
+<a href={href} class:list={[baseStyles, variants[variant], className]}>
+  {variant === 'primary' && (
+    <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+  )}
+  <span class="relative z-10 flex items-center gap-2">
+    <slot />
+  </span>
+</a>

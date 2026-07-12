@@ -1,0 +1,28 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+export interface Props {
+  images: ImageMetadata[];
+}
+const { images } = Astro.props;
+---
+
+<div class="relative w-full group my-12">
+  <div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-6 pb-6 lightbox-trigger px-4">
+    {images.map((src) => (
+      <div class="snap-center shrink-0 w-full sm:w-4/5 md:w-2/3 rounded-2xl overflow-hidden glass-panel border-white/10 group-hover:border-cyan-500/30 transition-colors duration-500 p-2">
+        <Image src={src} alt="Carousel Image" class="w-full h-auto object-cover rounded-xl" loading="lazy" />
+      </div>
+    ))}
+  </div>
+  
+  <!-- Gradient edges for depth in dark mode -->
+  <div class="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-slate-950 to-transparent pointer-events-none hidden sm:block"></div>
+  <div class="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-slate-950 to-transparent pointer-events-none hidden sm:block"></div>
+</div>
+
+<style>
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>

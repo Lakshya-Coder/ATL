@@ -1,0 +1,145 @@
+---
+import atlLogo from "../assets/images/atl_logo.svg";
+
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1);
+
+const links = [
+  { name: "Soan Papdi FPGA", href: "/soan-papdi" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
+];
+---
+
+<header
+  class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-4xl transition-all duration-300"
+>
+  <nav class="glass-panel rounded-full px-4 sm:px-6">
+    <div class="flex justify-between items-center h-14">
+      <!-- Logo and Title -->
+      <a
+        href="/"
+        class="flex items-center gap-3 group transition-transform duration-200 hover:scale-105 active:scale-95"
+      >
+        <div
+          class="p-1.5 bg-white/10 rounded-full border border-white/20 group-hover:border-cyan-400/50 transition-colors"
+        >
+          <img
+            src={atlLogo.src}
+            alt="ATL Logo"
+            class="w-auto h-6 sm:h-7 drop-shadow-md brightness-200"
+          />
+          <!-- this -->
+        </div>
+        <span
+          class="font-mono font-bold text-xl sm:text-2xl tracking-wide text-white group-hover:text-cyan-300 transition-colors"
+          >Ashok Tinkering Labs</span
+        >
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex space-x-2">
+        {
+          links.map((link) => (
+            <a
+              href={link.href}
+              class:list={[
+                "px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 border",
+                currentPath === link.href.slice(1) ||
+                (currentPath === "" && link.href === "/")
+                  ? "bg-cyan-500/20 text-cyan-300 border-cyan-500/30 neon-text-glow"
+                  : "border-transparent text-gray-300 hover:text-white hover:bg-white/10",
+              ]}
+            >
+              {link.name}
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden flex items-center">
+        <button
+          id="mobile-menu-btn"
+          aria-label="Toggle Menu"
+          class="p-2 rounded-full text-gray-300 hover:text-white hover:bg-white/10 focus:outline-none transition-colors"
+        >
+          <svg
+            class="h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              id="menu-icon-path"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden glass-panel rounded-2xl mt-2 absolute w-full left-0 origin-top animate-fade-in-down border border-white/10 shadow-2xl overflow-hidden"
+  >
+    <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3 flex flex-col">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              "block px-4 py-3 rounded-xl text-base font-medium transition-all",
+              currentPath === link.href.slice(1) ||
+              (currentPath === "" && link.href === "/")
+                ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/30"
+                : "text-gray-300 hover:bg-white/10",
+            ]}
+          >
+            {link.name}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  const iconPath = document.getElementById("menu-icon-path");
+
+  if (btn && menu && iconPath) {
+    btn.addEventListener("click", () => {
+      const isHidden = menu.classList.contains("hidden");
+      if (isHidden) {
+        menu.classList.remove("hidden");
+        iconPath.setAttribute("d", "M6 18L18 6M6 6l12 12");
+      } else {
+        menu.classList.add("hidden");
+        iconPath.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
+      }
+    });
+  }
+</script>
+
+<style>
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  .animate-fade-in-down {
+    animation: fadeInDown 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+</style>

@@ -1,0 +1,79 @@
+---
+---
+<!-- Lightbox Modal -->
+<div id="lightbox-modal" class="fixed inset-0 z-[9999] hidden items-center justify-center bg-slate-950/90 backdrop-blur-2xl opacity-0 transition-opacity duration-300 cursor-zoom-out">
+  <button class="lightbox-close absolute top-4 right-4 md:top-6 md:right-8 text-white/80 hover:text-cyan-400 text-4xl md:text-5xl font-light cursor-pointer hover:scale-110 transition-all z-[10000] select-none w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-black/40 hover:bg-black/60 rounded-full backdrop-blur-md border border-white/10" aria-label="Close image">&times;</button>
+  <div class="p-2 glass-panel rounded-2xl shadow-[0_0_50px_rgba(6,182,212,0.15)] scale-95 transition-transform duration-300" id="lightbox-container">
+    <img id="lightbox-img" class="max-w-[90vw] max-h-[85vh] object-contain rounded-xl" alt="Lightbox Preview" />
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const modal = document.getElementById("lightbox-modal");
+    const modalImg = document.getElementById("lightbox-img");
+    const container = document.getElementById("lightbox-container");
+    const closeBtn = document.querySelector(".lightbox-close");
+    
+    function initLightbox() {
+      const images = document.querySelectorAll(".lightbox-trigger img");
+      images.forEach(img => {
+        img.setAttribute('tabindex', '0');
+        img.classList.add('cursor-zoom-in', 'transition-all', 'duration-300', 'hover:opacity-80', 'hover:scale-[1.02]', 'hover:shadow-[0_0_15px_rgba(6,182,212,0.3)]');
+        
+        const openLightbox = function() {
+          if(modalImg && modal && container) {
+            modalImg.src = (img as HTMLImageElement).src;
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+            setTimeout(() => {
+              modal.classList.add("opacity-100");
+              container.classList.remove("scale-95");
+              container.classList.add("scale-100");
+            }, 10);
+          }
+        };
+
+        img.addEventListener("click", openLightbox);
+        img.addEventListener("keydown", function(e) {
+          if ((e as KeyboardEvent).key === 'Enter' || (e as KeyboardEvent).key === ' ') {
+            e.preventDefault();
+            openLightbox();
+          }
+        });
+      });
+    }
+
+    initLightbox();
+
+    function closeModal() {
+      if(modal && container) {
+        modal.classList.remove("opacity-100");
+        container.classList.remove("scale-100");
+        container.classList.add("scale-95");
+        setTimeout(() => {
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
+        }, 300); 
+      }
+    }
+
+    if (modal) {
+      modal.addEventListener("click", function(e) {
+        if (e.target === modal) { // click outside container
+          closeModal();
+        }
+      });
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener("click", closeModal);
+    }
+    
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    });
+  });
+</script>

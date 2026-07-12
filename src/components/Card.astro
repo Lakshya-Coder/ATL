@@ -1,0 +1,22 @@
+---
+export interface Props {
+  title: string;
+  link: string;
+  icon?: string;
+  color?: string; // We can ignore color or adapt it to neon colors
+}
+
+const { title, link, icon } = Astro.props;
+---
+
+<a href={link} class="relative block group rounded-2xl p-[1px] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_40px_-10px_rgba(6,182,212,0.3)]">
+  <!-- Animated gradient border background -->
+  <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-white/5 to-white/10 group-hover:from-cyan-400/50 group-hover:via-indigo-500/50 group-hover:to-cyan-400/50 transition-colors duration-500"></div>
+  
+  <div class="relative h-full glass-panel rounded-2xl p-6 flex flex-col justify-center items-center gap-3">
+    {icon && (
+      <span class="text-3xl text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]">✨</span> 
+    )}
+    <h3 class="text-xl font-display font-semibold text-white group-hover:text-cyan-300 transition-colors">{title}</h3>
+  </div>
+</a>
