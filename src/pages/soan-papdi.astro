@@ -10,6 +10,10 @@ import imgBottom from '../assets/images/soan-papdi-fpga-bottom.jpg';
 import imgBlink from '../assets/images/soan-papdi-alternate-led-blink.webm';
 import imgLeds from '../assets/images/soan-papdi-output-leds-marked.png';
 import imgSwitches from '../assets/images/soan-papdi-slide-switches-marked.png';
+import statusLed from '../assets/images/soan-papdi-status-led-marked.png';
+import gpioPins from '../assets/images/soan-papdi-gpio-marked.png';
+import pinDiagram from '../assets/images/6-soan-papdi-pin-diagram.png';
+import counterExample from '../assets/images/8-bit-couter-example.gif';
 import hardikImg from '../assets/images/hardik1.jpg';
 import piyushImg from '../assets/images/piyush.jpg';
 import lskImg from '../assets/images/lsk.png';
@@ -19,10 +23,13 @@ import lskImg from '../assets/images/lsk.png';
   <div class="max-w-5xl mx-auto mt-16 animate-fade-in-down relative z-10">
     <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-indigo-500/10 blur-[150px] rounded-full pointer-events-none -z-10"></div>
     
-    <div class="text-center mb-16">
+    <div class="text-center mb-12">
       <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-4 drop-shadow-lg neon-text-glow">Soan Papdi <span class="text-indigo-400">FPGA</span></h1>
-      <p class="text-xl text-cyan-400 font-mono tracking-widest uppercase">Hardware Dev Board</p>
     </div>
+
+    <p class="text-xl md:text-2xl leading-relaxed text-gray-400 mb-4 text-center">
+      A dev board that makes learning FPGA development easy.
+    </p>
 
     <Carousel images={[
       imgAngled,
@@ -30,11 +37,15 @@ import lskImg from '../assets/images/lsk.png';
       imgBottom
     ]} />
 
-    <div class="max-w-3xl mx-auto mt-16 text-center">
-      <p class="text-xl md:text-2xl leading-relaxed text-gray-400 mb-4">
-        Most FPGA boards are designed for experienced engineers. You spend hours hunting for components, wiring up circuits, and debugging setups.
+    <div class="max-w-3xl mx-auto mt-16">
+      <p class="text-xl md:text-2xl font-bold leading-relaxed text-gray-400 mb-4">
+        Most FPGA boards assume you already know what you're doing.
       </p>
-      <p class="text-2xl font-bold text-cyan-400 neon-text-glow">Soan Papdi is different.</p>
+      <p class="text-2xl font-bold text-cyan-400 neon-text-glow mb-4">Soan Papdi doesn't.</p>
+
+      <p class="text-xl md:text-2xl font-bold leading-relaxed text-gray-400 mb-4">
+        Built for beginners, it comes with onboard LEDs, switches, and GPIO headers, so you can focus on learning FPGA instead of setting up hardware.
+      </p>
     </div>
 
     <!-- YouTube Embed in Glass Container -->
@@ -45,82 +56,246 @@ import lskImg from '../assets/images/lsk.png';
       </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-24">
-      <div class="glass-panel p-8 rounded-3xl">
+    <div class="glass-panel p-4 rounded-3xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-24">
+      <div>
         <h3 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-          <span class="w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400">⚡</span>
+          <span class="w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400">
+            ⚡ 
+          </span>
           No complex HDL needed
         </h3>
-        <p class="text-gray-400 mb-4">No complicated installation flow. No lame driver installation. Download the IDE, double click, get started!</p>
-        <p class="text-gray-400">Program it using the open-source iCEStudio IDE or use RAW HDL!</p>
+
+        <p class="text-gray-400 mb-4">
+          Program it using the open-source iCEStudio IDE.
+        </p>
+
+        <p class="text-gray-400">
+          Just connect the blocks, and deploy your digital circuits directly to the FPGA.
+        </p>
       </div>
-      <div class="lightbox-trigger glass-panel p-4 rounded-3xl flex items-center justify-center">
-        <video src={imgBlink} autoplay loop muted playsinline class="w-full h-auto rounded-2xl opacity-90 hover:opacity-100 transition-opacity" aria-label="Alternate LEDs blink example in iCE Studio."></video>
+
+      
+
+      <div class="lightbox-trigger">
+        <div class="w-full md:w-5/5 lightbox-trigger">
+          <Image
+            src={counterExample}
+            alt="Output LEDs"
+            class="w-full rounded-2xl"
+          />
+        </div>
       </div>
+      
     </div>
 
     <div class="mt-32">
       <div class="flex items-center gap-4 mb-12">
-        <h2 class="text-4xl font-display font-bold text-white uppercase tracking-wider">Hardware Specs</h2>
+        <h2 class="text-4xl font-display font-bold text-white uppercase tracking-wider">Specifications</h2>
         <div class="h-px bg-gradient-to-r from-indigo-500/50 to-transparent flex-1"></div>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-mono text-sm">
         <div class="glass-panel p-6 rounded-2xl hover:border-cyan-400/50 transition-colors">
-          <span class="block text-cyan-400 mb-2">FPGA Core</span>
+          <span class="block text-cyan-400 mb-2 text-lg font-bold">FPGA Core</span>
           <span class="text-white text-lg">Lattice iCE40UP5K</span>
         </div>
         <div class="glass-panel p-6 rounded-2xl hover:border-cyan-400/50 transition-colors">
-          <span class="block text-cyan-400 mb-2">Logic Resources</span>
+          <span class="block text-cyan-400 mb-2 text-lg font-bold">Logic Resources</span>
           <span class="text-white text-lg">5,280 LUTs</span>
           <p class="text-gray-500 text-xs mt-1">(capable of hosting RISC-V)</p>
         </div>
         <div class="glass-panel p-6 rounded-2xl hover:border-cyan-400/50 transition-colors">
-          <span class="block text-cyan-400 mb-2">Memory</span>
+          <span class="block text-cyan-400 mb-2 text-lg font-bold">Embedded Memory</span>
           <span class="text-white text-lg">120 Kb BRAM / 1 Mb SPRAM</span>
         </div>
         <div class="glass-panel p-6 rounded-2xl hover:border-cyan-400/50 transition-colors">
-          <span class="block text-cyan-400 mb-2">Storage</span>
+          <span class="block text-cyan-400 mb-2 text-lg font-bold">SPRAM</span>
           <span class="text-white text-lg">128 Mbit SPI Flash</span>
         </div>
         <div class="glass-panel p-6 rounded-2xl hover:border-cyan-400/50 transition-colors">
-          <span class="block text-cyan-400 mb-2">Internal Oscillators</span>
+          <span class="block text-cyan-400 mb-2 text-lg font-bold">Internal Oscillators</span>
           <span class="text-white text-lg">10 kHz and 48 MHz</span>
         </div>
         <div class="glass-panel p-6 rounded-2xl hover:border-cyan-400/50 transition-colors">
-          <span class="block text-cyan-400 mb-2">Interface</span>
+          <span class="block text-cyan-400 mb-2 text-lg font-bold">Hard IP</span>
+          <span class="text-white text-lg">2 × SPI, 2 × I²C</span>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl hover:border-cyan-400/50 transition-colors">
+          <span class="block text-cyan-400 mb-2 text-lg font-bold">DSP Resources</span>
+          <span class="text-white text-lg">8 × DSP multiplier blocks</span>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl hover:border-cyan-400/50 transition-colors">
+          <span class="block text-cyan-400 mb-2 text-lg font-bold">Onboard Storage</span>
+          <span class="text-white text-lg">128 Mbit onboard SPI Flash</span>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl hover:border-cyan-400/50 transition-colors">
+          <span class="block text-cyan-400 mb-2 text-lg font-bold">Interface</span>
           <span class="text-white text-lg">USB-C (DFU Bootloader)</span>
         </div>
+
+        <div class="glass-panel p-6 rounded-2xl hover:border-cyan-400/50 transition-colors">
+          <span class="block text-cyan-400 mb-2 text-lg font-bold">Power</span>
+          <span class="text-white text-lg">5 Volts</span>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl hover:border-cyan-400/50 transition-colors">
+          <span class="block text-cyan-400 mb-2 text-lg font-bold">Dimensions</span>
+          <span class="text-white text-lg">67.5mm x 45.5mm</span>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl hover:border-cyan-400/50 transition-colors">
+          <span class="block text-cyan-400 mb-2 text-lg font-bold">Platform</span>
+          <span class="text-white text-lg">Windows, macOS & Linux</span>
+        </div>
+
       </div>
+    </div>
+
+    <div class="glass-panel p-6 rounded-2xl hover:border-cyan-400/50 transition-colors mt-6">
+      <span class="block text-cyan-400 mb-4 text-lg font-bold">
+        User Interface
+      </span>
+
+      <ul class="space-y-2 text-white text-lg">
+        <li>• 8 × Yellow 3.0 mm through-hole LEDs (D7–D0)</li>
+        <li>• 4 × White 0603 SMD status LEDs (S3–S0)</li>
+        <li>• 8 × DIP switches with orange indicator LEDs</li>
+        <li>• 2 × Push buttons (Program & Reset)</li>
+        <li>• 10 × GPIO pins for external sensors & peripherals</li>
+      </ul>
+    </div>
+
+    <div class="glass-panel p-8 rounded-2xl hover:border-cyan-400/50 transition-colors mt-6">
+      <h3 class="text-cyan-400 text-lg font-bold mb-4">
+        Supported Toolchains
+      </h3>
+
+      <p class="text-white text-lg">
+        iCE Studio, APIO, Yosys, nextpnr, IceStorm, Icarus Verilog, Amaranth HDL.
+      </p>
     </div>
 
     <!-- UI Components Section -->
     <div class="mt-32 relative">
       <div class="absolute right-0 top-1/2 w-[400px] h-[400px] bg-cyan-500/10 blur-[150px] rounded-full pointer-events-none -z-10"></div>
-      <h2 class="text-4xl font-display font-bold text-white mb-12 text-center">Engineered for Learning</h2>
+      <h2 class="text-4xl font-display font-bold text-white mb-12 text-center">Designed for Learning</h2>
       
-      <div class="space-y-24">
-        <!-- Feature 1 -->
-        <div class="flex flex-col md:flex-row items-center gap-12">
-          <div class="w-full md:w-1/2 lightbox-trigger glass-panel p-4 rounded-3xl">
-            <Image src={imgLeds} alt="Output LEDs" class="w-full rounded-2xl" />
-          </div>
-          <div class="w-full md:w-1/2">
-            <h3 class="text-3xl font-bold text-white mb-4">8-Bit Output Display</h3>
-            <p class="text-gray-400 text-lg">8 yellow LEDs directly map to fundamental 8-bit data logic. Perfect for counters, shift registers, and visualizing state machines in real time.</p>
+      <div class="space-y-6">
+        <!-- Output Leds -->
+        <div class="glass-panel rounded-3xl p-6">
+          <div class="flex flex-col md:flex-row items-center gap-12">
+            
+            <div class="w-full md:w-3/5 lightbox-trigger">
+              <Image
+                src={imgLeds}
+                alt="Output LEDs"
+                class="w-full rounded-2xl"
+              />
+            </div>
+
+            <div class="w-full md:w-1/2">
+              <h3 class="text-3xl font-bold text-white mb-4">
+                Output LEDs
+              </h3>
+
+              <p class="text-gray-400 text-lg leading-relaxed">
+                8-bit data is very common, things like counters or state machines, you can directly see the output on these LEDs.
+              </p>
+            </div>
           </div>
         </div>
 
-        <!-- Feature 2 -->
-        <div class="flex flex-col md:flex-row-reverse items-center gap-12">
-          <div class="w-full md:w-1/2 lightbox-trigger glass-panel p-4 rounded-3xl">
-            <Image src={imgSwitches} alt="Input Switches" class="w-full rounded-2xl" />
-          </div>
-          <div class="w-full md:w-1/2">
-            <h3 class="text-3xl font-bold text-white mb-4">Direct Hardware Input</h3>
-            <p class="text-gray-400 text-lg">Two sets of 4-bit switches (A3–A0 & B3–B0) let you feed logic instantly into your circuits. Test adders and combinational logic without a PC.</p>
+        <!-- Status Leds -->
+        <div class="glass-panel rounded-3xl p-6">
+          <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+
+            <div class="w-full md:w-3/5 lightbox-trigger">
+              <Image
+                src={statusLed}
+                alt="Input Switches"
+                class="w-full rounded-2xl"
+              />
+            </div>
+
+            <div class="w-full md:w-2/5">
+              <h3 class="text-3xl font-bold text-white mb-4">
+                Status LEDs
+              </h3>
+
+              <p class="text-gray-400 text-lg leading-relaxed">
+                Signals like carry flags, overflow indicators can be shown here.
+              </p>
+            </div>
+
           </div>
         </div>
+
+        <!-- Input Switches -->
+        <div class="glass-panel rounded-3xl p-6">
+          <div class="flex flex-col md:flex-row items-center gap-12">
+            
+            <div class="w-full md:w-3/5 lightbox-trigger">
+              <Image
+                src={imgSwitches}
+                alt="Output LEDs"
+                class="w-full rounded-2xl"
+              />
+            </div>
+
+            <div class="w-full md:w-1/2">
+              <h3 class="text-3xl font-bold text-white mb-4">
+                Input Switches
+              </h3>
+
+              <p class="text-gray-400 text-lg leading-relaxed">
+                Using these switches, you can input two 4-bit numbers into your circuit. Now you can add, subtract & instantly see the result on the LEDs.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- GPIO Pins -->
+        <div class="glass-panel rounded-3xl p-6">
+          <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+
+            <div class="w-full md:w-3/5 lightbox-trigger">
+              <Image
+                src={gpioPins}
+                alt="Input Switches"
+                class="w-full rounded-2xl"
+              />
+            </div>
+
+            <div class="w-full md:w-2/5">
+              <h3 class="text-3xl font-bold text-white mb-4">
+                GPIO Headers
+              </h3>
+
+              <p class="text-gray-400 text-lg leading-relaxed">
+                These headers let you connect external components like sensors, displays, motors, or your own custom hardware to extend the capabilities of Soan Papdi.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Pin Diagram -->
+        <div class="glass-panel rounded-3xl p-6">
+          <h3 class="text-3xl font-bold text-white mb-6">
+            Pin Diagram
+          </h3>
+
+          <div class="lightbox-trigger">
+            <Image
+              src={pinDiagram}
+              alt="Pin Diagram"
+              class="w-full rounded-2xl"
+            />
+          </div>
+        </div>
+
+
       </div>
     </div>
 
