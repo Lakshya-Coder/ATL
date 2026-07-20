@@ -13,6 +13,14 @@ import imgSwitches from '../assets/images/soan-papdi-slide-switches-marked.png';
 import statusLed from '../assets/images/soan-papdi-status-led-marked.png';
 import gpioPins from '../assets/images/soan-papdi-gpio-marked.png';
 import pinDiagram from '../assets/images/6-soan-papdi-pin-diagram.png';
+import builtInExamples from '../assets/images/iCE-Studio-builtin-example.gif';
+import gatesExample from '../assets/images/gates-example.png';
+import orGate from '../assets/images/OR-Gate.jpg';
+import andGate from '../assets/images/AND-Gate.jpg';
+import decoder from '../assets/images/2to4-bit-decoder.jpg';
+import riscv from '../assets/images/riscv-ice-studio.jpg';
+import z80 from '../assets/images/Z80.png';
+import nand2Tetris from '../assets/images/Nand2tetris.png';
 import counterExample from '../assets/images/8-bit-couter-example.gif';
 import hardikImg from '../assets/images/hardik1.jpg';
 import piyushImg from '../assets/images/piyush.jpg';
@@ -56,37 +64,29 @@ import lskImg from '../assets/images/lsk.png';
       </div>
     </div>
 
-    <div class="glass-panel p-4 rounded-3xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-24">
-      <div>
-        <h3 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-          <span class="w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400">
-            ⚡ 
-          </span>
-          No complex HDL needed
-        </h3>
 
-        <p class="text-gray-400 mb-4">
-          Program it using the open-source iCEStudio IDE.
-        </p>
+  <div class="glass-panel p-6 rounded-3xl mt-24">
+  <h3 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+    <span class="w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400">
+      ⚡
+    </span>
+    No complex HDL needed
+  </h3>
 
-        <p class="text-gray-400">
-          Just connect the blocks, and deploy your digital circuits directly to the FPGA.
-        </p>
-      </div>
+  <p class="text-gray-400 mb-4">
+    Program it using the open-source iCEStudio IDE.
+  </p>
 
-      
+  <p class="text-gray-400 mb-8">
+    Just connect the blocks, and deploy your digital circuits directly to the FPGA.
+  </p>
+  
+  <video class="w-full rounded-2xl" autoplay loop muted playsinline >
+    <source src="/videos/8bitCounter.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
 
-      <div class="lightbox-trigger">
-        <div class="w-full md:w-5/5 lightbox-trigger">
-          <Image
-            src={counterExample}
-            alt="Output LEDs"
-            class="w-full rounded-2xl"
-          />
-        </div>
-      </div>
-      
-    </div>
+</div>
 
     <div class="mt-32">
       <div class="flex items-center gap-4 mb-12">
@@ -297,6 +297,89 @@ import lskImg from '../assets/images/lsk.png';
 
 
       </div>
+    </div>
+
+    <div class="mt-16 mb-10">
+      <div class="flex items-center gap-4 mb-12">
+        <h2 class="text-4xl font-display font-bold text-white uppercase tracking-wider">Learning Resources</h2>
+        <div class="h-px bg-gradient-to-r from-cyan-500/50 to-transparent flex-1"></div>
+      </div>
+
+      <p class="text-xl text-gray-400 mb-12">To make things easier, Piyush has created a Digital Electronics 101 course, where everything is explained step by step.</p>
+
+      <!-- YouTube Playlist Embed -->
+      <div class="mt-6 glass-panel p-2 md:p-4 rounded-[2rem] mx-auto max-w-4xl shadow-[0_0_30px_rgba(99,102,241,0.15)] relative overflow-hidden group">
+        <div class="absolute inset-0 bg-gradient-to-b from-indigo-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="aspect-video w-full rounded-3xl overflow-hidden relative z-10">
+          <iframe
+            loading="lazy"
+            class="w-full h-full"
+            src="https://www.youtube.com/embed/videoseries?list=PLTbERlX_4R03Ru_9ee6_U0GgTcg858amo"
+            title="Soan Papdi Tutorials Playlist"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+      <p class="mt-10 text-xl text-gray-400 mb-12">You can explore built-in examples and learn by doing.</p>
+
+      <div class="glass-panel rounded-3xl p-5">
+        <div class="lightbox-trigger">
+          <Image
+            src={builtInExamples}
+            alt="Pin Diagram"
+            class="w-full rounded-2xl"
+          />
+        </div>
+      </div>
+
+      <p class="mt-10 text-xl text-gray-400 mb-12">Start simple — build basic gates like AND, OR, or a decoder.</p>
+      
+      <Carousel images={[
+        andGate,
+        orGate,
+        decoder
+      ]} />
+
+      <p class="mt-10 text-xl text-gray-400 mb-12">
+        Once you’re comfortable with the basics, move on to these advanced projects:
+      </p>
+
+      
+      <ol class="list-decimal pl-6 space-y-2 text-xl text-gray-400">
+        <li>
+          <strong><a href="https://github.com/Obijuan/RISC-V-FPGA" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300">
+            RISC-V CPU
+          </a></strong>
+          — Build and run a RISC-V processor on your FPGA.
+        </li>
+
+        <li>
+          <strong><a href="https://github.com/Obijuan/Z80-FPGA" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300">
+            Z80 CPU
+          </a></strong>
+          — Recreate the classic Z80 microprocessor using open-source FPGA tools.
+        </li>
+
+        <li>
+          <strong><a href="https://github.com/Obijuan/nand2tetris-icestudio" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300">
+            Hack CPU
+          </a></strong>
+          — Implement the Nand2Tetris Hack CPU, built gate by gate.
+        </li>
+      </ol>
+
+      <Carousel images={[
+        riscv,
+        z80,
+        nand2Tetris
+      ]} />
+    
+      
+      
+
     </div>
 
     <div class="mt-32 mb-10">
